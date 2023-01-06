@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录加载</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+        .loading{
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: red; */
+            box-sizing: border-box;
+            border-radius: 50%;
+            border-top: 10px solid yellow;
+            position: relative;
+            animation: rotate 5s linear infinite;
+        }
+        .loading span{
+            position: absolute;
+            animation: rotate1 5s linear infinite;
+        }
+        .loading::before{
+            content: '';
+            width: 200px;
+            height: 200px;
+            box-sizing: border-box;
+            /* background-color: red; */
+            position: absolute;
+            top: -10px;
+            left: 0;
+            border-radius: 50%;
+            border-top: 10px solid skyblue;
+            transform: rotate(120deg);
+            /* animation: rotate 5s linear infinite; */
+        }
+        .loading::after{
+            content: '';
+            width: 200px;
+            height: 200px;
+            box-sizing: border-box;
+            /* background-color: red; */
+            position: absolute;
+            top: -10px;
+            left: 0;
+            border-radius: 50%;
+            border-top: 10px solid greenyellow;
+            transform: rotate(240deg);
+            /* animation: rotate 5s linear infinite; */
+        }
+        @keyframes rotate {
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes rotate1 {
+            from{
+                transform: rotate(360deg);
+            }
+            to{
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <span>loading...</span>
+    </div>
+</body>
+</html>

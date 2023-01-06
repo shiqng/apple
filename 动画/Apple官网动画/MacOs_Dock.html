@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{
+            font-size: 32px;
+        }
+      body{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+      }
+      .glass{
+        width: 100vw;
+        height: 100px;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .content{
+        --scale:1;
+        /* width: 100vw;
+        height: 1.5rem; */
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .content li{
+        width:  calc(1.5rem * var(--scale)) ;
+        height:  calc(1.5rem * var(--scale));
+        padding: 0.2rem;
+        position: relative;
+        top: calc((1.5rem * var(--scale) - 1.5rem) / 2 * -1);
+        cursor: pointer;
+        transform: 15ms all ease-out;
+      }
+      .content li.loading{
+        animation: loading 1s linear infinite;
+      }
+      .content .li1{
+        background:url("./1.png") center center / 100% 100% no-repeat;
+      }
+      .content .li2{
+        background:url("./2.png") center center / 100% 100% no-repeat;
+      }
+      .content .li3{
+        background:url("./3.png") center center / 100% 100% no-repeat;
+      }
+      .content .li4{
+        background:url("./4.png") center center / 100% 100% no-repeat;
+      }
+      .content .li5{
+        background:url("./5.png") center center / 100% 100% no-repeat;
+      }
+      .content .li6{
+        background:url("./6.png") center center / 100% 100% no-repeat;
+      }
+      .content .li7{
+        background:url("./7.png") center center / 100% 100% no-repeat;
+      }
+      @keyframes loading {
+        0%,100%{
+            transform: translateY(0px);
+        }
+        60%{
+            transform: translateY(-40px);
+        }
+      }
+    </style>
+</head>
+
+<body>
+    <div class="glass">
+        <ul class="content">
+            <li class="li1"></li>
+            <li class="li2"></li>
+            <li class="li3"></li>
+            <li class="li4"></li>
+            <li class="li5"></li>
+            <li class="li6"></li>
+            <li class="li7"></li>
+        </ul>
+    </div>
+    
+        
+</body>
+<script>
+   document.querySelectorAll('.content li').forEach( li => {
+    li.addEventListener('click',e => {
+        document.querySelectorAll('.content li').forEach( li => {
+            li.classList.remove('loading');
+        })
+        e.currentTarget.classList.add('loading')
+    })
+    li.addEventListener('mousemove',e => {
+        let item = e.target
+        let itemRect = item.getBoundingClientRect()
+       
+        let offset = Math.abs(e.clientX - itemRect.left) / itemRect.width
+
+        let prev = item.previousElementSibling || null
+        let next = item.nextElementSibling || null
+
+        let scale = 0.6
+
+        resetScale()
+
+        if(prev){
+            prev.style.setProperty('--scale',1 + scale * Math.abs(offset - 1))
+        }
+        
+        item.style.setProperty('--scale', 1 + scale)
+
+        if(next){
+            next.style.setProperty('--scale',1 + scale * offset)
+        }
+    })
+   })
+
+   document.querySelector('.content').addEventListener('mouseleave',e => {
+        resetScale()
+   })
+
+   function resetScale(){
+    document.querySelectorAll('.content li').forEach(li => {
+        li.style.setProperty('--scale',1)
+    })
+   }
+</script>
+
+</html>

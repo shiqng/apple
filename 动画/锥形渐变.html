@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+      .circle {
+        width: 100px;
+        height: 100px;
+        background: #fff;
+        border-radius: 50%;
+        background: conic-gradient(
+            red,
+            red var(--percent1),
+        blue var(--percent1),
+        blue var(--percent2),
+        green var(--percent2),
+        green var(--percent3),
+        black var(--percent3),
+        black var(--percent4),
+        white var(--percent4)
+        );
+        position:relative;
+        counter-reset:percent var(--value);
+    }
+    .circle:before,.circle:after {
+        position: absolute;
+        content:'';
+        margin:auto;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        top:0px;
+        border-radius:50%;
+        width: 90%;
+        height: 90%;
+        background: #fff;
+    }
+    .circle:after{
+        content:counter(percent);
+        text-align:center;
+        line-height:12px;
+        height:12px;
+    }  
+    </style>
+    
+    <div id='circle' class="circle" style="--percent1:0;--percent2:0;--percent3:0;--percent4:0;--max:360"></div>
+    <script>
+        let dom = document.getElementById('circle')
+        let startTime=0
+    /*
+        beginVal : 起始值
+        endVal： 目标值
+        step ： 增长幅度
+        time ： 多少毫秒增长一次
+    */
+    function raf(beginVal,endVal,step,time,nameNum){
+        if(beginVal>= endVal){
+            console.log(endVal);
+            return
+        }
+        requestAnimationFrame(function (beginTime){
+            //beginTime 任务执行时间 毫秒
+            if(beginTime-startTime>time){
+                beginVal+=step
+                dom.style.setProperty(`--percent${nameNum}`, `${beginVal}deg`)
+                dom.style.setProperty('--value', beginVal)
+                startTime = beginTime
+            }
+            if(beginVal%90==0){
+                nameNum++
+                raf(beginVal,endVal,step,16,nameNum)
+            }else{
+                raf(beginVal,endVal,step,16,nameNum)
+            }
+        })
+    }
+    raf(0,360,1,16,1)
+    </script>
+</body>
+</html>

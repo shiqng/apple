@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>颜色渐变</title>
+<meta charset="utf-8">
+<style type="text/css">
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+.masked{
+background-image: -webkit-linear-gradient(left, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+-webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
+-webkit-background-size: 200% 100%;
+-webkit-animation: masked-animation 4s infinite linear;
+}
+}
+@-webkit-keyframes masked-animation {
+0% { background-position: 0 0;}
+100% { background-position: -100% 0;}
+}
+</style>
+</head>
+<body>
+<div class="masked">
+<h4>这是一段可选文字，求知道的朋友帮帮忙，怎么做成div层背景渐变</h4>
+</div></body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+        .p-8{
+            display: none;
+        }
+        #iphone-12-pro:checked ~ .tab-iphone-12-pro{
+            display: block;
+        }
+        #iphone-12:checked ~ .tab-iphone-12{
+            display: block;
+        }
+        #iphone-se:checked ~ .tab-iphone-se{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <input type="radio" name="tab" id="iphone-12-pro" class="hidden" checked />
+        <input type="radio" name="tab" id="iphone-12" class="hidden" />
+        <input type="radio" name="tab" id="iphone-se" class="hidden" />
+      
+        <div class="my-4 nav">
+          <label for="iphone-12-pro">
+            <span class="py-2 px-5 rounded-full inline-block">iphone 12 Pro</span>
+          </label>
+          <label for="iphone-12">
+            <span class="py-2 px-5 rounded-full inline-block">iphone 12</span>
+          </label>
+          <label for="iphone-se">
+            <span class="py-2 px-5 rounded-full inline-block">iphone SE</span>
+          </label>
+        </div>
+      
+        <div class="p-8 rounded-xl shadow-md tab-iphone-12-pro">
+           <h1>iphone-12-pro------------</h1>
+        </div>
+      
+        <div class="p-8 rounded-xl shadow-md tab-iphone-12">
+            <h1>iphone-12------------</h1>
+        </div>
+      
+        <div class="p-8 rounded-xl shadow-md tab-iphone-se">
+            <h1>iphone-se------------</h1>
+        </div>
+      </div>
+      
+</body>
+</html>

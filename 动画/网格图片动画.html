@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+           --imgSrc: './1.jpg';
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            /* background-color: #1E1C26; */
+        }
+        
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* background-color: #000; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ul{
+            width: 3840px;
+            height: 2160px;
+            list-style: none;
+            display: grid;
+        }
+    </style>    
+</head>
+<body>
+    <script crossorigin="anonymous" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" src="https://lib.baomitu.com/animejs/3.2.1/anime.min.js"></script>
+    <ul>
+    </ul>
+    <script>
+        
+        const root = document.querySelector(":root");
+        // 设置 CSS 变量
+        // root.style.setProperty("--main-bg-color", "red");
+        // 读取 CSS 变量
+        const computedStyle = getComputedStyle(root);
+        const mainBgColor = computedStyle.getPropertyValue("--imgSrc");
+        // 删除 CSS 变量
+        // root.style.removeProperty("--main-bg-color");
+        const ulDom = document.querySelector('ul')
+        let frag = document.createDocumentFragment()
+        function img(row,com){
+            let w = `${3840/row}px`
+            let h = `${2160/com}px`
+            let rowStr = `${w} `.repeat(row)
+            let cStr = `${h} `.repeat(com)
+            ulDom.style.gridTemplateColumns = rowStr;
+            ulDom.style.gridTemplateRows = cStr;
+
+            for(let i = 0;i<row*com;i++){
+                let li = document.createElement('li');
+                li.style.width = w;
+                li.style.height = h;
+                li.style.overflow = 'hidden';
+                li.style.backgroundImage = `url(${mainBgColor})`;
+                // console.log(Math.floor(i/com)*(-(2160 / com)));
+                li.style.backgroundPosition = `${(i%row)*(-(3840 / row))}px ${Math.floor(i/com)*(-(2160 / com))}px`;
+                frag.appendChild(li);
+            }
+            ulDom.appendChild(frag);
+            let a = anime({
+                targets: 'ul li',
+                scale: [
+                    {value: 1, easing: 'easeOutSine', duration: 500},
+                    // {value: 1, easing: 'easeInOutQuad', duration: 1200},
+                    {value: 0, easing: 'easeInOutQuad', duration: 1200}
+                ],
+                delay: anime.stagger(200, {grid: [row, com], from: 'center'})
+            });
+            let ul = document.querySelector('ul')
+            ul.addEventListener('click',()=>{
+                a.play();
+            })
+        }
+        img(3,3)
+
+        
+    </script>
+</body>
+</html>

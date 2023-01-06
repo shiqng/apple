@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字特效</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(112, 108, 108);
+        }
+        h1{
+            display: block;
+        }
+        .shadow{
+            color: white;
+        }
+        .shadow::before{
+            content: 'showName';
+            position: absolute;
+            color: black;
+            transform: translate(-8px,7px) scaleY(0.5) skew(32deg);
+            z-index: -1;
+            filter: blur(1.5px);
+            -webkit-mask-image:linear-gradient(transparent,#000)
+        }
+        .word{
+            color: white;
+            text-shadow: 0.1px 0.1px rgba(197, 223, 248,0.8),0.2px 0.2px rgba(197, 223, 248,0.8),0.3px 0.3px rgba(197, 223, 248,0.8),0.4px 0.4px rgba(197, 223, 248,0.8),0.5px 0.5px rgba(197, 223, 248,0.8),0.6px 0.6px rgba(197, 223, 248,0.8),
+            0.7px 0.7px rgba(197, 223, 248,0.8),0.8px 0.8px rgba(197, 223, 248,0.8),0.9px 0.9px rgba(197, 223, 248,0.8),1px 1px rgba(197, 223, 248,0.8),1.1px 1.1px rgba(197, 223, 248,0.8),1.2px 1.2px rgba(197, 223, 248,0.8),1.3px 1.3px rgba(197, 223, 248,0.8);
+        }
+        .a{
+            color: white;
+            text-shadow: 0px 0.1px rgba(197, 223, 248,0.8),0px 0.2px rgba(197, 223, 248,0.8),0px 0.3px rgba(197, 223, 248,0.8),0px 0.4px rgba(197, 223, 248,0.8),0px 0.5px rgba(197, 223, 248,0.8),0px 0.6px rgba(197, 223, 248,0.8),
+            0px 0.7px rgba(197, 223, 248,0.8),0px 0.8px rgba(197, 223, 248,0.8),0px 0.9px rgba(197, 223, 248,0.8),0px 1px rgba(197, 223, 248,0.8),0px 1.1px rgba(197, 223, 248,0.8),0px 1.2px rgba(197, 223, 248,0.8),0px 1.3px rgba(197, 223, 248,0.8),
+            0px 1.4px rgba(197, 223, 248,0.8),0px 1.5px rgba(197, 223, 248,0.8),0px 1.6px rgba(197, 223, 248,0.8),0px 1.7px rgba(197, 223, 248,0.8),0px 1.8px rgba(197, 223, 248,0.8),0px 1.9px rgba(197, 223, 248,0.8),0px 2px rgba(197, 223, 248,0.8);
+        }
+        .content{
+		   margin-top: 30px;
+		   font-size: 64px;
+		   background:-webkit-linear-gradient(right, #FF0000, #00FF00,black);/*设置线性渐变*/
+		   /*为了支持更多的浏览器*/
+		   -webkit-background-clip: text;/*背景被裁剪到文字*/
+		   -webkit-text-fill-color: transparent;/*设置文字的填充颜色*/
+		}
+        .wordBorder{
+            text-stroke: 2px #2173FF;
+            -webkit-text-stroke: 1px #2173FF;
+        }
+        .textShadow{
+            text-shadow: 0 0 10px red
+                     /* 0 0 20px #fff,
+                     0 0 30px #fff,
+                     0 0 40px #00a67c,
+                     0 0 70px #00a67c */
+        }
+        /* text{
+		   font-family:SimHei;
+		   font-size:36px;
+		   fill:gold;
+		} */
+        text{
+		   font-family:SimHei;/*定义字体*/
+		   font-size:33px;/*定义文字大小*/
+		   fill:url(#linear);/*定义文字颜色线性渐变*/
+		}
+        .bg{
+		    background: #000; /*设置元素背景颜色*/
+		    width: 1000px; /*设置元素宽度*/
+		    height: 200px; /*设置元素高度*/
+		    margin: 0 auto; /*设置元素外边距*/
+		    padding-top: 0px; /*设置元素上内边距*/
+		}
+		.shine{
+		    width: 1000px;
+		    font-family: "Microsoft YaHei";
+		    font-size: 60px;
+		    text-align: center;
+		    background: -webkit-linear-gradient(left, #0f0, #00f) 0 0 no-repeat;/*设置线性渐变*/
+		    -webkit-background-size: 160px;                        /*设置背景大小*/
+		    -webkit-background-clip: text;                            /*背景被裁剪到文字*/
+		    -webkit-text-fill-color: rgba(255, 255, 255, 0.3);        /*设置文字的填充颜色*/
+		    -webkit-animation: shine 3s infinite;                    /*设置动画*/
+		}
+		@-webkit-keyframes shine{   /*创建动画*/
+		    0%{
+		        background-position: 0 0;
+		    }
+		    100%{
+		        background-position: 100% 100%;
+		    }
+		}
+    </style>
+</head>
+<body>
+   <h1 class="shadow">showName</h1>
+   <h1 class="word">3Dword</h1>
+   <h1 class="a">Aword</h1>
+   <div class="content">
+    文字颜色渐变
+    </div>
+   <h1 class="wordBorder">wordBorder</h1>
+   <h1 class="textShadow">text-shadow-word</h1>
+   <div class="bg">
+    <p class="shine">无人做你的光芒就自己照亮前方
+    </p>
+   </div>
+   <!-- <svg width="1000" height="800">
+    <defs>
+        <path id="path1" d="M100,300 A100,100 0 0 0 395,300">
+    </defs>
+    <text x="50" y="100">
+        <textPath xlink:href="#path1">成长就是逼着自己坚强</textPath>
+    </text>
+ </svg> -->
+ <svg width="1000" height="800">
+    <defs>
+       <path id="textPath" d="M130,140 C130,240 330,240 330,140 S510,60 510,140"/>
+       <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF0000"></stop>
+            <stop offset="50%" stop-color="#00FF00"></stop>
+            <stop offset="100%" stop-color="#0000FF"></stop>
+        </linearGradient>
+    </defs>
+    <text dy="10">
+         <textPath xlink:href="#textPath">世界会向那些有目标和远见的人让路</textPath>
+     </text>
+</svg>
+<script>
+    var strname="文字着字抖动效果，css文字效果";
+var strlen=strname.length;
+var dstr="";
+var ssize=50;
+function fdiv(){
+  for (i=0;i<strlen;++i){
+    dstr=dstr+'<div id=aa'+i+' style="font-size:20px; top:200px; left:'+ssize+'px; position:absolute;">'+strname.charAt(i)+'</div>';
+	ssize=ssize+22;
+  }
+  document.write(dstr);
+}
+fdiv();
+var sumstr=new Array(-1,-6,-10,-15,-10,-6,-1);
+var sublen=sumstr.length;
+var i=1;
+function dmove(){
+  var s="";
+  if (i!=1){Parray(i);}
+  Larray(i);
+  ++i;
+  if (i==strlen) i=0;
+  setTimeout("dmove()",100);
+}
+function Parray(n){
+  for (i1=1;i1<n;++i1){
+    ob=document.all("aa"+(i1));
+	ob.style.top=200+"px";
+  }
+}
+function Larray(n){
+  for (i2=0;i2<sublen;++i2){
+    if ((n+i2)<strlen){
+	  ob=document.all("aa"+(n+i2));
+      ob.style.top=((200+sumstr[i2])+"px");
+	}
+  }
+}
+dmove();
+</script>
+</body>
+</html>
